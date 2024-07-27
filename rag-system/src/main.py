@@ -1,16 +1,15 @@
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
-from src.rag.enhanced_rag_system import EnhancedRAGSystem
-from dotenv import load_dotenv
+from src.rag.rag_system import RAGSystem
 import os
 
 app = FastAPI()
 
 # Initialize your RAG system here
-rag_system = EnhancedRAGSystem(
-    model_name="gpt-3.5-turbo", api_key=os.getenv("OPENAI_API_KEY")
-)
+rag_system = RAGSystem(model_name="gpt-3.5-turbo", api_key=os.getenv("OPENAI_API_KEY"))
 
+# Load some initial documents
+rag_system.load_documents("data/Get_Started_With_Small.pdf")
 class Query(BaseModel):
     text: str
 

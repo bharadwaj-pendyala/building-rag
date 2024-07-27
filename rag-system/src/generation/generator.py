@@ -1,9 +1,10 @@
 from typing import List, Dict, Any
 from transformers import pipeline
 import openai
-import google.generativeai as genai
+import google.generativeai as genai # type: ignore
 
-class EnhancedGenerator:
+
+class Generator:
     def __init__(self, model_name: str, api_key: str = None):
         self.model_name = model_name
         self.api_key = api_key

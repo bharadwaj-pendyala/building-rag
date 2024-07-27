@@ -1,12 +1,12 @@
 from typing import List, Dict
-from .retriever import EnhancedRetriever
-from .generator import EnhancedGenerator
+from .retriever import Retriever
+from .generator import Generator
 
 
-class EnhancedRAGSystem:
+class RAGSystem:
     def __init__(self, model_name: str, api_key: str = None):
-        self.retriever = EnhancedRetriever()
-        self.generator = EnhancedGenerator(model_name, api_key)
+        self.retriever = Retriever()
+        self.generator = Generator(model_name, api_key)
 
     def load_documents(self, file_path: str):
         self.retriever.load_documents(file_path)

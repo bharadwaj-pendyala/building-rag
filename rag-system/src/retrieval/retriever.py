@@ -5,7 +5,8 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-class EnhancedRetriever:
+
+class Retriever:
     def __init__(self):
         self.documents = []
         self.model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
