@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "/rag-system/requirements.txt" # Location of your `requirements.txt` or `setup.py`
+    directory: "../rag-system/requirements.txt" # Location of your `requirements.txt` or `setup.py`
     schedule:
       interval: "daily" # Options: "daily", "weekly", "monthly"
     allow:
@@ -11,7 +11,7 @@ updates:
         versions: ["< 1.0.0"] # Optional: ignore specific versions
 
   - package-ecosystem: "pip"
-    directory: "/rag-system/requirements.txt" # Location of your `requirements-dev.txt` or other dependency files
+    directory: "../rag-system/requirements.txt" # Location of your `requirements-dev.txt` or other dependency files
     schedule:
       interval: "daily" # Options: "daily", "weekly", "monthly"
     allow:
