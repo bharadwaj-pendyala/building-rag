@@ -1,11 +1,21 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "pip"
+    directory: "/rag-system/requirements.txt" # Location of your `requirements.txt` or `setup.py`
     schedule:
-      interval: "daily"
+      interval: "daily" # Options: "daily", "weekly", "monthly"
+    allow:
+      - dependency-type: "direct"
+    ignore:
+      - dependency-name: "some-dependency-to-ignore"
+        versions: ["< 1.0.0"] # Optional: ignore specific versions
+
+  - package-ecosystem: "pip"
+    directory: "/rag-system/requirements.txt" # Location of your `requirements-dev.txt` or other dependency files
+    schedule:
+      interval: "daily" # Options: "daily", "weekly", "monthly"
+    allow:
+      - dependency-type: "dev"
+    ignore:
+      - dependency-name: "another-dependency-to-ignore"
+        versions: ["< 2.0.0"] # Optional: ignore specific versions
