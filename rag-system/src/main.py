@@ -1,12 +1,15 @@
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
 from src.rag.enhanced_rag_system import EnhancedRAGSystem
+from dotenv import load_dotenv
 import os
 
 app = FastAPI()
 
 # Initialize your RAG system here
-rag_system = EnhancedRAGSystem(model_name="gpt-3.5-turbo", api_key="your-api-key-here")
+rag_system = EnhancedRAGSystem(
+    model_name="gpt-3.5-turbo", api_key=os.getenv("OPENAI_API_KEY")
+)
 
 class Query(BaseModel):
     text: str
