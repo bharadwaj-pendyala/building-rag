@@ -1,6 +1,6 @@
-# RAG System
+# Enhanced RAG System
 
-This project implements a Retrieval-Augmented Generation (RAG) system from scratch. RAG combines the power of retrieval-based and generation-based approaches to create more accurate and contextually relevant responses.
+This project implements an enhanced Retrieval-Augmented Generation (RAG) system from scratch. It combines the power of retrieval-based and generation-based approaches to create more accurate and contextually relevant responses, with support for various document types and language models.
 
 ## Project Structure
 
@@ -8,17 +8,15 @@ This project implements a Retrieval-Augmented Generation (RAG) system from scrat
 rag-system/
 ├── src/
 │   ├── retrieval/
-│   │   └── retriever.py
+│   │   └── enhanced_retriever.py
 │   ├── generation/
-│   │   └── generator.py
+│   │   └── enhanced_generator.py
 │   ├── rag/
-│   │   └── rag_system.py
-│   ├── main.py
-│   └── data_loader.py
+│   │   └── enhanced_rag_system.py
+│   └── main.py
 ├── tests/
 │   └── test_rag_system.py
 ├── data/
-│   └── documents.json
 ├── requirements.txt
 ├── README.md
 └── .gitignore
@@ -26,10 +24,10 @@ rag-system/
 
 ## Features
 
-- Retrieval component for finding relevant information
-- Generation component for creating responses
+- Enhanced retrieval component supporting JSON, TXT, and PDF inputs
+- Flexible generation component supporting multiple language models (GPT-3.5, GPT-4, Gemini, Hugging Face models)
 - Integration of retrieval and generation for enhanced output
-- Simple API/interface for interacting with the RAG system
+- Simple API for interacting with the RAG system, including file upload and document addition
 
 ## Setup
 
@@ -50,37 +48,75 @@ rag-system/
    pip install -r requirements.txt
    ```
 
+4. Set up API keys:
+   Create a `.env` file in the project root and add your API keys:
+   ```
+   OPENAI_API_KEY=your_openai_api_key
+   GOOGLE_API_KEY=your_google_api_key
+   ```
+
 ## Usage
 
-1. Prepare your documents:
-   Create a JSON file in the `data` directory (e.g., `data/documents.json`) with your documents in the following format:
-   ```json
-   [
-     {"id": "1", "content": "Document content here"},
-     {"id": "2", "content": "Another document content here"},
-     ...
-   ]
-   ```
-
-2. Update the `src/main.py` file to load your documents:
-   ```python
-   from src.data_loader import load_documents
-
-   documents = load_documents('data/documents.json')
-   rag_system = RAGSystem(documents)
-   ```
-
-3. Start the API:
+1. Start the API:
    ```
    uvicorn src.main:app --reload
    ```
 
-4. Send a POST request to `http://localhost:8000/query` with a JSON body:
-   ```json
-   {
-     "text": "Your query here"
-   }
+2. Use the API endpoints:
+
+   a. Upload a document:
    ```
+   curl -X POST -F "file=@path/to/your/file.pdf" http://localhost:8000/upload
+   ```
+
+   b. Add a document directly:
+   ```
+   curl -X POST -H "Content-Type: application/json" -d '{"content":"Your document content here"}' http://localhost:8000/add_document
+   ```
+
+   c. Query the RAG system:
+   ```
+   curl -X POST -H "Content-Type: application/json" -d '{"text":"Your query here"}' http://localhost:8000/query
+   ```
+
+## Testing Locally
+
+1. Prepare test documents:
+   Place some test documents (JSON, TXT, PDF) in the `data/` directory.
+
+2. Update the `src/main.py` file:
+   - Set the desired language model and API key:
+     ```python
+     rag_system = EnhancedRAGSystem(model_name="gpt-3.5-turbo", api_key=os.getenv("OPENAI_API_KEY"))
+     ```
+   - Load some initial documents:
+     ```python
+     rag_system.load_documents("data/your_test_document.pdf")
+     ```
+
+3. Start the API server:
+   ```
+   uvicorn src.main:app --reload
+   ```
+
+4. Use a tool like curl or Postman to test the endpoints:
+
+   a. Upload a new document:
+   ```
+   curl -X POST -F "file=@data/new_document.pdf" http://localhost:8000/upload
+   ```
+
+   b. Add a document directly:
+   ```
+   curl -X POST -H "Content-Type: application/json" -d '{"content":"This is a test document content."}' http://localhost:8000/add_document
+   ```
+
+   c. Query the system:
+   ```
+   curl -X POST -H "Content-Type: application/json" -d '{"text":"What information can you provide about the uploaded documents?"}' http://localhost:8000/query
+   ```
+
+5. Check the responses to ensure the system is working as expected.
 
 ## Running Tests
 
