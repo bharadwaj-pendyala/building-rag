@@ -8,10 +8,17 @@ This project implements a Retrieval-Augmented Generation (RAG) system from scrat
 rag-system/
 ├── src/
 │   ├── retrieval/
+│   │   └── retriever.py
 │   ├── generation/
-│   └── rag/
+│   │   └── generator.py
+│   ├── rag/
+│   │   └── rag_system.py
+│   ├── main.py
+│   └── data_loader.py
 ├── tests/
+│   └── test_rag_system.py
 ├── data/
+│   └── documents.json
 ├── requirements.txt
 ├── README.md
 └── .gitignore
@@ -45,7 +52,42 @@ rag-system/
 
 ## Usage
 
-(To be added as the project develops)
+1. Prepare your documents:
+   Create a JSON file in the `data` directory (e.g., `data/documents.json`) with your documents in the following format:
+   ```json
+   [
+     {"id": "1", "content": "Document content here"},
+     {"id": "2", "content": "Another document content here"},
+     ...
+   ]
+   ```
+
+2. Update the `src/main.py` file to load your documents:
+   ```python
+   from src.data_loader import load_documents
+
+   documents = load_documents('data/documents.json')
+   rag_system = RAGSystem(documents)
+   ```
+
+3. Start the API:
+   ```
+   uvicorn src.main:app --reload
+   ```
+
+4. Send a POST request to `http://localhost:8000/query` with a JSON body:
+   ```json
+   {
+     "text": "Your query here"
+   }
+   ```
+
+## Running Tests
+
+Run the tests using pytest:
+```
+pytest tests/
+```
 
 ## Contributing
 
