@@ -1,7 +1,6 @@
 from typing import List, Dict
-from .retriever import Retriever
-from .generator import Generator
-
+from src.retrieval.retriever import Retriever
+from src.generation.generator import Generator
 
 class RAGSystem:
     def __init__(self, model_name: str, api_key: str = None):

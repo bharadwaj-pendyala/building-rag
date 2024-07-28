@@ -1,7 +1,13 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Now you can import your modules
+from src.rag.rag_system import RAGSystem
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
-from src.rag.rag_system import RAGSystem
-import os
+
 
 app = FastAPI()
 
