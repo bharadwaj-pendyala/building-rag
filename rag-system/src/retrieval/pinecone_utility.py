@@ -7,8 +7,8 @@
 """
 
 import os
-from pinecone_notebooks.colab import Authenticate
 from langchain_text_splitters import MarkdownHeaderTextSplitter
+from pinecone_notebooks.colab import Authenticate
 
 # initialize connection to pinecone (orget API key at app.pinecone.io)
 if not os.environ.get("PINECONE_API_KEY"):
