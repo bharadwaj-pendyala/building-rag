@@ -24,6 +24,10 @@ rag-system/
 └── .gitignore
 ```
 
+## Project Architecture
+
+![RAG Arch Overview.](docs/diagrams/RAG_Arch.png)
+
 ## Features
 
 - Retrieval component for finding relevant information
