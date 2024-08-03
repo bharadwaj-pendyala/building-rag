@@ -1,10 +1,11 @@
 import json
+import os
+from typing import List, Dict
+
 import PyPDF2
-from typing import List, Dict, Union
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
-import os
+
 
 class Retriever:
     def __init__(self):

@@ -49,30 +49,16 @@ Chunking Strategies for LLM Applications:
 This module implements several of these chunking methods and provides utility functions for text processing.
 """
 
-import os
-from typing import List, Dict
+from typing import List, Dict, Optional
+
 from langchain_text_splitters import (
-    CharacterTextSplitter,
     NLTKTextSplitter,
     SpacyTextSplitter,
     RecursiveCharacterTextSplitter,
     MarkdownTextSplitter,
     LatexTextSplitter,
+    MarkdownHeaderTextSplitter,
 )
-from pinecone_notebooks.colab import Authenticate
-
-
-def authenticate_pinecone():
-    """Authenticate with Pinecone if API key is not set."""
-    if not os.environ.get("PINECONE_API_KEY"):
-        Authenticate()
-    return os.environ.get("PINECONE_API_KEY")
-
-
-def set_openai_api_key():
-    """Set OpenAI API key from environment variable."""
-    os.environ["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
-
 
 def fixed_size_chunking(
     text: str, chunk_size: int = 256, chunk_overlap: int = 20
@@ -187,6 +173,35 @@ def split_text_with_markdown(
     return splitter.create_documents([text])
 
 
+def split_text_with_markdown_header(
+    text: str,
+    chunk_size: int = 100,
+    chunk_overlap: int = 0,
+    headers_to_split_on: Optional[List[str]] = None,
+) -> List[Dict[str, str]]:
+    """
+    Split markdown text by headers.
+
+    This method implements the Header-Based Chunking strategy for Markdown mentioned in the module docstring.
+
+    Args:
+        text (str): The markdown text to be split.
+        chunk_size (int): The target size of each chunk in characters.
+        chunk_overlap (int): The number of characters to overlap between chunks.
+
+    Returns:
+        List[Dict[str, str]]: A list of dictionaries containing the split markdown text.
+    """
+    if headers_to_split_on is None:
+        headers_to_split_on = ["#", "##", "###"]  # Default headers to split on
+
+    splitter = MarkdownHeaderTextSplitter(
+        headers_to_split_on=headers_to_split_on, strip_headers=False
+    )
+    md_header_splits = splitter.split_text(text)
+    return md_header_splits
+
+
 def split_text_with_latex(
     text: str, chunk_size: int = 100, chunk_overlap: int = 0
 ) -> List[Dict[str, str]]:
@@ -233,6 +248,48 @@ if __name__ == "__main__":
     sample_text = """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."""
 
+    sample_mrkdwn = """# Heading 1
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+    ## Heading 2
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat.
+
+    ### Heading 3
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+    ## Another Heading 2
+    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+    deserunt mollit anim id est laborum."""
+
+    sample_latex = r"""
+    \documentclass{article}
+    \begin{document}
+
+    \title{Sample LaTeX Document}
+    \author{Author Name}
+    \date{\today}
+    \maketitle
+
+    \section{Introduction}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+    \section{Methods}
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat.
+
+    \section{Results}
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+    \section{Conclusion}
+    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+    deserunt mollit anim id est laborum.
+
+    \end{document}
+    """
+
     print_chunks(
         fixed_size_chunking(sample_text, chunk_size=50, chunk_overlap=10),
         "Fixed Size Chunking",
@@ -241,5 +298,8 @@ if __name__ == "__main__":
     print_chunks(split_text_with_nltk(sample_text), "NLTK Splitter")
     print_chunks(split_text_with_spacy(sample_text), "spaCy Splitter")
     print_chunks(split_text_with_recursive(sample_text), "Recursive Splitter")
-    print_chunks(split_text_with_markdown(sample_text), "Markdown Splitter")
-    print_chunks(split_text_with_latex(sample_text), "LaTeX Splitter")
+    print_chunks(split_text_with_markdown(sample_mrkdwn), "Markdown Splitter")
+    print_chunks(split_text_with_latex(sample_latex), "LaTeX Splitter")
+    print_chunks(
+        split_text_with_markdown_header(sample_mrkdwn), "Markdown Header Splitter"
+    )
