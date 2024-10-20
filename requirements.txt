@@ -32,7 +32,7 @@ httptools==0.6.4
 httpx==0.27.2
 huggingface-hub==0.26.0
 humanfriendly==10.0
-idna==3.1
+idna==3.7
 importlib_metadata==8.4.0
 importlib_resources==6.4.5
 jiter==0.6.1
