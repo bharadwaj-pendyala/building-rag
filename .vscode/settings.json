@@ -1,4 +1,9 @@
 {
     "python.analysis.extraPaths": ["${workspaceFolder}"],
-    "python.autoComplete.extraPaths": ["${workspaceFolder}"]
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}"
+    ],
+    "cSpell.words": [
+        "docsearch"
+    ]
 }
