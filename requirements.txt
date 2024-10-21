@@ -4,6 +4,7 @@ langchain-openai
 python-dotenv
 chromadb
 openai
-pypdf2
+pdfplumber
 youtube-transcript-api
 python-dotenv
+pandas
