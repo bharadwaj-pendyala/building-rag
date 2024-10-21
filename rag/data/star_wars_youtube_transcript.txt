@@ -1,0 +1,8 @@
+[00:00] Luke Skywalker: "R2, that stabilizer's broken loose again! See if you can't lock it down."
+[00:05] [R2 beeps in response.]
+[00:10] Red Leader: "Luke, let me know when you're going in."
+[00:13] Luke Skywalker: "I'm on it."
+[00:15] Darth Vader: "I have you now."
+[00:20] Obi-Wan Kenobi: "Use the Force, Luke."
+[00:25] Luke Skywalker: [deactivates his targeting computer] "I will."
+[00:30] Narration: "With one last effort, Luke fires torpedoes into the Death Star’s exhaust port. The massive space station explodes, signaling victory for the Rebel Alliance."

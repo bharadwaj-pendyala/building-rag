@@ -1,0 +1,9 @@
+langchain
+langchain-community
+langchain-openai
+python-dotenv
+chromadb
+openai
+pypdf2
+youtube-transcript-api
+python-dotenv
