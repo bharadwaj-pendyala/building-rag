@@ -11,15 +11,15 @@ import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(current_dir, "data")
 
-text_file = os.path.join(data_dir, "star_wars_excerpt.txt")
-json_file = os.path.join(data_dir, "star_wars_excerpt.json")
-pdf_file = os.path.join(data_dir, "star_wars_excerpt.pdf")
-csv_file = os.path.join(data_dir, "star_wars_excerpt.csv")
-youtube_video_url = "https://www.youtube.com/watch?v=_lOT2p_FCvA"
+text_file = os.path.join(data_dir, "zephyria_ecosystems.txt")
+json_file = os.path.join(data_dir, "galactic_civilization.json")
+pdf_file = os.path.join(data_dir, "lumina_language.pdf")
+csv_file = os.path.join(data_dir, "exoplanet_atmospheres.csv")
+youtube_video_url = "https://www.youtube.com/watch?v=7ATtD8x7vV0" # crash course on astronomy
 
 # Load all data
 txt_data = load_txt(text_file)
-json_data = load_json(json_file)
+json_data = load_json(json_file)    
 pdf_data = load_pdf(pdf_file)
 csv_data = load_csv(csv_file)
 youtube_data = load_youtube_transcript(youtube_video_url)
