@@ -1,4 +1,4 @@
-s# RAG System
+# RAG System
 
 This project implements a Retrieval-Augmented Generation (RAG) system using LangChain and OpenAI's models. The system loads various document types (text, PDF, JSON, CSV, and YouTube transcripts), splits them into chunks, generates embeddings, and allows users to ask questions about the content.
 
@@ -93,6 +93,66 @@ rag_project/
 - **JSON File**: `load_json(file_path)`
 - **CSV File**: `load_csv(file_path)`
 - **YouTube Transcript**: `load_youtube_transcript(video_url)`
+
+## Sample Prompts for Included Test Data
+
+### Text File
+
+1. What is the diameter of Zephyria compared to Earth?
+2. How long is a Zephyrian year in Earth days?
+3. What are the four major ecosystems on Zephyria?
+4. What is the dominant species in the Luminous Forests?
+5. How tall can Quartz spires in the Crystal Deserts grow?
+6. What causes the Floating Islands to levitate?
+7. What is unique about the water in Zephyria's Geothermal Seas?
+8. Which ecosystem has the highest Zephyrian Biodiversity Index (ZBI) score?
+9. Describe the symbiotic relationship in the Luminous Forests.
+10. What are two environmental challenges facing Zephyria?
+
+### CSV
+
+1. Which planet has the highest habitability score?
+2. What is the atmospheric pressure on Glacius-9?
+3. List all planets with a primary atmosphere of Nitrogen.
+4. What are the secondary elements in Terraxa Prime's atmosphere?
+5. Which planet is closest to Earth in terms of atmospheric pressure?
+
+### JSON
+
+1. What is the name of the Zephyrian Collective's home system?
+2. How many species are part of the Zephyrian Collective?
+3. What is the maximum speed of their FTL travel method?
+4. Who are the Zephyrian Collective's allies?
+5. What was their most recent notable achievement, and in what year did it occur?
+
+### PDF
+
+1. How do the Luminans communicate instead of using sound?
+2. What are the five basic light frequencies used in the Lumina language?
+3. How is verb tense indicated in Lumina?
+4. What is the word for "Peace" in Lumina?
+5. Describe the cultural significance of the Lumina language.
+
+### YouTube Transcript
+
+1. What are the main methods used to detect exoplanets mentioned in the video?
+2. How does the transit method of detecting exoplanets work?
+3. What is the radial velocity method, and how does it help in detecting exoplanets?
+4. According to the video, what was special about the discovery of 51 Pegasi b?
+5. What are some of the challenges in directly imaging exoplanets?
+6. How do astronomers determine the composition of exoplanet atmospheres?
+7. What is the habitable zone, and why is it important in the search for exoplanets?
+8. What are some of the unexpected types of planets that have been discovered?
+9. How has the discovery of exoplanets changed our understanding of planetary formation?
+10. What future missions or technologies does the video mention for studying exoplanets?
+
+### Integrative Prompts
+
+1. Compare the exoplanet detection methods described in the Crash Course video with the data we have on fictional planets in our CSV file. How might these methods have been used to gather our fictional data?
+2. Based on the information from the Crash Course video about exoplanet atmospheres, analyze the atmospheric compositions in our CSV file. Which of our fictional planets might be considered most Earth-like?
+3. The video mentions hot Jupiters and super-Earths. How do these compare to the planets described in our fictional datasets?
+4. Using the concepts from the Crash Course video, how might the Zephyrian Collective from our JSON data have developed their FTL travel technology to overcome the vast distances between stars?
+5. The video discusses the potential for finding life on exoplanets. How might this relate to the development of the Lumina language described in our PDF data?
 
 ## Customization
 
