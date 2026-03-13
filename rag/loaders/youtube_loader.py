@@ -1,5 +1,5 @@
 from youtube_transcript_api import YouTubeTranscriptApi
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 def load_youtube_transcript(video_url):
     """Load the transcript from a YouTube video using the video ID."""

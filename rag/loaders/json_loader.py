@@ -1,5 +1,5 @@
 import json
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 def flatten_json(data, prefix=''):
     """Recursively flatten a JSON object."""

@@ -6,5 +6,4 @@ chromadb
 openai
 pdfplumber
 youtube-transcript-api
-python-dotenv
 pandas

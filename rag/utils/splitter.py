@@ -1,4 +1,4 @@
-from langchain.text_splitter import CharacterTextSplitter
+from langchain_text_splitters import CharacterTextSplitter
 
 def split_text(texts, chunk_size=1000, chunk_overlap=0):
     """Splits text into manageable chunks."""

@@ -1,5 +1,5 @@
 import pdfplumber
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 def load_pdf(file_path):
     """Load a PDF file."""
