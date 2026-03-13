@@ -1,7 +1,7 @@
 import os
 
-from langchain.chains import RetrievalQA
-from langchain.prompts import PromptTemplate
+from langchain_classic.chains import RetrievalQA
+from langchain_core.prompts import PromptTemplate
 from langchain_community.vectorstores import Chroma
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
@@ -31,7 +31,7 @@ def build_qa_chain() -> RetrievalQA:
     texts = split_text(all_texts)
 
     embeddings = OpenAIEmbeddings(api_key=OPENAI_API_KEY)
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo")
+    llm = ChatOpenAI(model="gpt-3.5-turbo")
     docsearch = Chroma.from_documents(texts, embeddings)
 
     prompt_template = """Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
